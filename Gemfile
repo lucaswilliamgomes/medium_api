@@ -14,4 +14,5 @@ group :development, :test do
 end
 
 group :development do
+  gem 'solargraph', group: :development
 end
