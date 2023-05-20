@@ -1,13 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
+  before(:all) do
+    Rails.application.load_seed
+  end
+
   it 'is valid with valid attributes' do
     article = Article.new(title: 'Anything',
                           body: 'Lorem ipsum dolor sit amet.',
                           reading_time: 5,
                           cover: Rack::Test::UploadedFile.new(
                             'spec/fixtures/files/image_test.png', 'image/png'
-                          ))
+                          ),
+                          tags: [Tag.first, Tag.last])
     expect(article).to be_valid
   end
 
@@ -39,4 +44,38 @@ RSpec.describe Article, type: :model do
                           cover: nil)
     expect(article).to_not be_valid
   end
+
+  it 'is not valid without a Tags' do
+    article = Article.new(title: 'Anything',
+                          body: 'Lorem ipsum dolor sit amet.',
+                          reading_time: 5,
+                          cover: Rack::Test::UploadedFile.new(
+                            'spec/fixtures/files/image_test.png', 'image/png'
+                          ),
+                          tags: [])
+    expect(article).to_not be_valid
+  end
+
+  # it 'is valid search article by tag' do
+  #   first_tag = Tag.first
+  #   last_tag = Tag.last
+  #   article_with_first_tag = Article.new(title: 'Anything',
+  #                                        body: 'Lorem ipsum dolor sit amet.',
+  #                                        reading_time: 5,
+  #                                        cover: Rack::Test::UploadedFile.new(
+  #                                          'spec/fixtures/files/image_test.png', 'image/png'
+  #                                        ),
+  #                                        tags: [Tag.first])
+
+  #   article_with_last_tag = Article.new(title: 'Anything',
+  #                                       body: 'Lorem ipsum dolor sit amet.',
+  #                                       reading_time: 5,
+  #                                       cover: Rack::Test::UploadedFile.new(
+  #                                         'spec/fixtures/files/image_test.png', 'image/png'
+  #                                       ),
+  #                                       tags: [Tag.last])
+    
+  #   debugger
+  #   expect(Article.tagged_with(name: first_tag[:name])).to include(article_with_first_tag)
+  # end
 end
