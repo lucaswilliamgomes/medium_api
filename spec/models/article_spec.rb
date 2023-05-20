@@ -4,7 +4,10 @@ RSpec.describe Article, type: :model do
   it 'is valid with valid attributes' do
     article = Article.new(title: 'Anything',
                           body: 'Lorem ipsum dolor sit amet.',
-                          reading_time: 5)
+                          reading_time: 5,
+                          cover: Rack::Test::UploadedFile.new(
+                            'spec/fixtures/files/image_test.png', 'image/png'
+                          ))
     expect(article).to be_valid
   end
 
@@ -26,6 +29,14 @@ RSpec.describe Article, type: :model do
     article = Article.new(title: 'Anything',
                           body: 'Lorem ipsum dolor sit amet.',
                           reading_time: nil)
+    expect(article).to_not be_valid
+  end
+
+  it 'is not valid without a cover' do
+    article = Article.new(title: 'Anything',
+                          body: 'Lorem ipsum dolor sit amet.',
+                          reading_time: 5,
+                          cover: nil)
     expect(article).to_not be_valid
   end
 end
