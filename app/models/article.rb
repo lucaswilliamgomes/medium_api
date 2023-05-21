@@ -12,12 +12,12 @@ class Article < ApplicationRecord
   validates :cover, presence: true
   validates :tags, presence: true
 
-  def self.get_cover_url
+  def self.cover_url
     url_for(cover)
   end
 
   def self.tagged_with(name)
-    Tag.find_by!(name: name).articles
+    Tag.find_by!(name:).articles
   end
 
   def self.tag_counts
@@ -26,7 +26,7 @@ class Article < ApplicationRecord
   end
 
   def tag_list
-    tags.map(&:name).join(', ')
+    tags.map(&:name)
   end
 
   def tag_list=(names)
