@@ -16,5 +16,11 @@ module Types
     def article(id:)
       Article.find(id)
     end
+
+    # get all tags
+    field :tags, [Types::TagType], null: false
+    def tags
+      Tag.all
+    end
   end
 end
