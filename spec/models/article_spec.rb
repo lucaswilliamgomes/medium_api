@@ -56,26 +56,28 @@ RSpec.describe Article, type: :model do
     expect(article).to_not be_valid
   end
 
-  # it 'is valid search article by tag' do
-  #   first_tag = Tag.first
-  #   last_tag = Tag.last
-  #   article_with_first_tag = Article.new(title: 'Anything',
-  #                                        body: 'Lorem ipsum dolor sit amet.',
-  #                                        reading_time: 5,
-  #                                        cover: Rack::Test::UploadedFile.new(
-  #                                          'spec/fixtures/files/image_test.png', 'image/png'
-  #                                        ),
-  #                                        tags: [Tag.first])
+  it 'is valid search article by tag' do
+    first_tag = Tag.first
+    last_tag = Tag.last
+    article_with_first_tag = Article.create(title: 'Anything',
+                                            body: 'Lorem ipsum dolor sit amet.',
+                                            reading_time: 1,
+                                            cover: Rack::Test::UploadedFile.new(
+                                              'spec/fixtures/files/image_test.png', 'image/png'
+                                            ),
+                                            tags: [Tag.first])
 
-  #   article_with_last_tag = Article.new(title: 'Anything',
-  #                                       body: 'Lorem ipsum dolor sit amet.',
-  #                                       reading_time: 5,
-  #                                       cover: Rack::Test::UploadedFile.new(
-  #                                         'spec/fixtures/files/image_test.png', 'image/png'
-  #                                       ),
-  #                                       tags: [Tag.last])
-    
-  #   debugger
-  #   expect(Article.tagged_with(name: first_tag[:name])).to include(article_with_first_tag)
-  # end
+    article_with_last_tag = Article.create(title: 'Anything',
+                                           body: 'Lorem ipsum dolor sit amet.',
+                                           reading_time: 2,
+                                           cover: Rack::Test::UploadedFile.new(
+                                             'spec/fixtures/files/image_test.png', 'image/png'
+                                           ),
+                                           tags: [Tag.last])
+
+    expect(Article.tagged_with(first_tag.name)).to include(article_with_first_tag)
+    expect(Article.tagged_with(first_tag.name)).to_not include(article_with_last_tag)
+    expect(Article.tagged_with(last_tag.name)).to include(article_with_last_tag)
+    expect(Article.tagged_with(last_tag.name)).to_not include(article_with_first_tag)
+  end
 end
