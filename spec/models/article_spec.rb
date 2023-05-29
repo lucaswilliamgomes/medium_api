@@ -8,6 +8,7 @@ RSpec.describe Article, type: :model do
   it 'is valid with valid attributes' do
     article = Article.new(title: 'Anything',
                           body: 'Lorem ipsum dolor sit amet.',
+                          subtitle: 'Lorem ipsum dolor sit amet.',
                           reading_time: 5,
                           cover: Rack::Test::UploadedFile.new(
                             'spec/fixtures/files/image_test.png', 'image/png'
@@ -62,6 +63,7 @@ RSpec.describe Article, type: :model do
     article_with_first_tag = Article.create(title: 'Anything',
                                             body: 'Lorem ipsum dolor sit amet.',
                                             reading_time: 1,
+                                            subtitle: 'Lorem ipsum dolor sit amet.',
                                             cover: Rack::Test::UploadedFile.new(
                                               'spec/fixtures/files/image_test.png', 'image/png'
                                             ),
@@ -70,6 +72,7 @@ RSpec.describe Article, type: :model do
     article_with_last_tag = Article.create(title: 'Anything',
                                            body: 'Lorem ipsum dolor sit amet.',
                                            reading_time: 2,
+                                           subtitle: 'Lorem ipsum dolor sit amet.',
                                            cover: Rack::Test::UploadedFile.new(
                                              'spec/fixtures/files/image_test.png', 'image/png'
                                            ),
