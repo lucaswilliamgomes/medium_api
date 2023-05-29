@@ -30,6 +30,7 @@ end
 10.times do
   Article.create(
     title: Faker::Science.science,
+    subtitle: Faker::Lorem.sentence(word_count: 8),
     body: Faker::Lorem.paragraphs(number: 5).join(' '),
     reading_time: Random.new.rand(5..30),
     cover: Rack::Test::UploadedFile.new(

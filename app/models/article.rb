@@ -3,10 +3,11 @@ class Article < ApplicationRecord
 
   has_rich_text :body
   has_one_attached :cover
-  has_many :taggings
+  has_many :taggings, dependent: :delete_all
   has_many :tags, through: :taggings
 
   validates :title, presence: true
+  validates :subtitle, presence: true
   validates :body, presence: true
   validates :reading_time, presence: true
   validates :cover, presence: true
