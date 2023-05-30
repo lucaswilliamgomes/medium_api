@@ -4,6 +4,7 @@ module Types
   class ArticleType < Types::BaseObject
     field :id, ID, null: false
     field :title, String
+    field :subtitle, String
     field :reading_time, Integer
     field :body, String
     # field :cover_url, String
@@ -12,7 +13,7 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
     def body
-      object.body.to_plain_text
+      object.body
     end
 
     def cover_url
