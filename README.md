@@ -9,9 +9,9 @@ Backend based on [Medium](https://medium.com) to publish articles, stories and t
 
 ## Prerequisites
 
-- Ruby (version X.X.X)
-- Ruby on Rails (version X.X.X)
-- PostgreSQL (version X.X.X)
+- Ruby (version 3.2.2)
+- Ruby on Rails (version 7.0.4)
+- PostgreSQL (version 14.7)
 
 ## Installation
 
@@ -48,7 +48,4 @@ Contributions are welcome! If you find any bugs or want to improve the project, 
 2. Create a new branch: git checkout -b my-feature.
 3. Make the necessary changes and commit them: git commit -am 'Add some feature'.
 4. Push to the branch: git push origin my-feature.
-5. Submit a pull request.
-
-  
-
+5. Submit a pull request.   
